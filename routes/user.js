@@ -111,4 +111,16 @@ router.post("/forgotPassword", (req, res) => {
   });
 });
 
+router.get("/get", (req, response) => {
+  let query =
+    "select id, name, email, contactNumber, status from user where role=user";
+  connection.query(query, (err, results) => {
+    if (!err) {
+      return res.status(200).json(results);
+    } else {
+      return res.status(500).json(err);
+    }
+  });
+});
+
 module.exports = router;
